@@ -20,15 +20,18 @@ class App extends Component {
             "city": ""
         }], //object to edit 
         search: '',
-        //for form 
+        //for form changes
         todoText: '',
         todoName: '',
-        todoCity: ''
+        todoCity: '',
+        todoId: ''
     };
 
 
     addToTodoList = (_date, _name, _city, editId) => {
         //add new item
+        console.log(editId);
+
         if (editId == undefined) {
             this.setState((state) => {
                 const todos = [...state.todos];
@@ -52,15 +55,14 @@ class App extends Component {
     };
 
     componentDidMount() {
-        console.log("lastKey");
-        if (this.state.todoChoos[1] !== undefined) {
-            const our_data = {
-                todoText: this.state.todoChoos[1].date,
-                todoName: this.state.todoChoos[1].name,
-                todoCity: this.state.todoChoos[1].city
-            }
-            this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
-        }
+        // if (this.state.todoChoos[1] !== undefined) {
+        //     const our_data = {
+        //         todoText: this.state.todoChoos[1].date,
+        //         todoName: this.state.todoChoos[1].name,
+        //         todoCity: this.state.todoChoos[1].city
+        //     }
+        //     this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
+        // }
     };
 
     deleteTodoItem = (deleteId) => {
@@ -84,9 +86,11 @@ class App extends Component {
             return { todoChoos };
         });
 
-        this.setState((state) =>{state.todoText = myChos[0].date});
-        this.setState((state) =>{state.todoName = myChos[0].name});
-        this.setState((state) =>{state.todoCity = myChos[0].city});
+        this.setState((state) => { state.todoText = myChos[0].date });
+        this.setState((state) => { state.todoName = myChos[0].name });
+        this.setState((state) => { state.todoCity = myChos[0].city });
+        this.setState((state) => { state.todoId = editId });
+        console.log(this.state.todoId);
     };
 
     onChangeInputTodoList = ({ target: { value } }) => {
@@ -102,30 +106,28 @@ class App extends Component {
     };
 
 
-    
     onSubmitForm = (e) => {
         e.preventDefault();
-        if (this.state.todoChoos[1] == undefined) {
-            const our_data = {
-                todoText: this.state.todoText,
-                todoName: this.state.todoName,
-                todoCity: this.state.todoCity
-            }
+        const our_data = {
+            todoText: this.state.todoText,
+            todoName: this.state.todoName,
+            todoCity: this.state.todoCity,
+            todoCity: this.state.todoId
+        }
 
-            console.log(our_data);
-            //const {todoText} = this.state;
-            this.props.onAddItem(our_data.todoText, our_data.todoName, our_data.todoCity);
-            this.setState({ todoText: '', todoName: '', todoCity: '' });
-        }
-        else {
-            const our_data = {
-                todoText: this.state.todoChoos[1].date,
-                todoName: this.state.todoChoos[1].name,
-                todoCity: this.state.todoChoos[1].city
-            }
-            this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
-            this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity,this.state.todoChoos[1].id);
-        }
+        console.log(our_data);
+        this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity,our_data.todoId);
+        this.setState({ todoText: '', todoName: '', todoCity: '', todoId: '' });
+
+        // else {
+        //     const our_data = {
+        //         todoText: this.state.todoChoos[1].date,
+        //         todoName: this.state.todoChoos[1].name,
+        //         todoCity: this.state.todoChoos[1].city
+        //     }
+        //     this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
+        //     this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity,this.state.todoChoos[1].id);
+        // }
     }
 
     render() {
