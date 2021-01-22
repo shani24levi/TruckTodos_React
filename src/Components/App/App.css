@@ -1,0 +1,88 @@
+.todo{
+    background-image: url(https://i.ibb.co/M5Z3Sdp/Scene.png);
+    background-size: cover;
+    background-position: bottom;
+    margin-left: auto;
+    border-radius: 0 0 5% 5%;
+    margin-top: 2% ;
+    height: 450px;
+}
+.todoList{
+    background-color: white;
+    margin: 8%;
+    margin-right: 0;
+    border-radius: 5%;
+    height: 250px;
+    overflow: auto;
+}
+
+/* width */
+#scroll::-webkit-scrollbar {
+    width: 5px;
+}
+  
+  /* Track */
+#scroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+   
+  /* Handle */
+#scroll::-webkit-scrollbar-thumb {
+    background: rgb(255, 63, 56); 
+    border-radius: 10px;
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+#scroll::-webkit-scrollbar-thumb:hover {
+    background:  rgb(255, 63, 56); 
+}
+
+
+
+.todoForm{
+    padding-top: 9%;
+}
+
+#id_date{
+    border-left: 3px solid ;
+    border-bottom: 3px solid ;
+    border-color: rgb(10, 10, 255);
+}
+#id_name{
+    border-left: 3px solid ;
+    border-bottom: 3px solid ;
+    border-color: rgb(124, 9, 255);
+}
+#id_city{
+    border-left: 3px solid ;
+    border-bottom: 3px solid;
+    border-color: rgb(234, 0, 255);
+}
+
+  footer img{
+    max-width: 30%; margin-left: 10%; position: absolute; top: 355px;
+  }
+
+
+  form button:hover {
+    animation: shake 0.5s;
+  
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
