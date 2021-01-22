@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdDelete, MdSave, MdEdit, MdAdd} from 'react-icons/md';
+import {MdDelete, MdEdit} from 'react-icons/md';
 
 const TodoListItem = ({ todo, todoDate, todoCity, deleteTodoItem, editTodoItem }) => (
 
@@ -9,13 +9,13 @@ const TodoListItem = ({ todo, todoDate, todoCity, deleteTodoItem, editTodoItem }
             <div className="col-xs-3 p-1">{todo}</div>
             <div className="col-xs-3 p-1">{todoCity}</div>
             <div className="row ustify-content-end">
-                <div className="col-1">
-                    <button className="btn btn-danger btn-sm" style={{ borderRadius: '50%' }} onClick={deleteTodoItem}>
+                <div className="col-1 pr-4" onClick={deleteTodoItem} >
+                    <button className="btn btn-danger btn-sm" style={{ borderRadius: '50%' }}>
                     <MdDelete/>
                     </button>
                 </div>
-                <div className="col-1">
-                    <button className="btn btn-danger btn-sm" style={{ borderRadius: '50%' }} onClick={editTodoItem}>
+                <div className="col-1" onClick={editTodoItem}>
+                    <button className="btn btn-danger btn-sm" style={{ borderRadius: '50%' }}>
                     <MdEdit/>
                     </button>
                 </div>

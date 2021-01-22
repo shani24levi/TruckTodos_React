@@ -10,7 +10,7 @@ import './App.css';
 const data = require('../../data/data.json');
 
 class App extends Component {
-    #lastKey = 3;
+    #lastKey = 4;
     state = {
         todos: data ,
         search: '',
@@ -19,10 +19,15 @@ class App extends Component {
 
     addToTodoList = (_date, _name, _city, editId) => {
         //add new item
+        console.log(("jo"));
         if (editId == undefined) {
+            console.log(_date);
+            console.log(_name);
+            console.log(_city);
+
             this.setState((state) => {
                 const todos = [...state.todos];
-                todos.push({ id: this.#lastKey++, _date, _name, _city });
+                todos.push({ id: this.#lastKey++, date:_date,  name:_name, city:_city });
                 return { todos };
             });
         }
