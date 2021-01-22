@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import TodoSearch from "../TodoSearch";
 import Todolist from "../Todolist";
-import TodoForm from "../TodoForm";
 import './App.css';
 
 //Get json data and save as array object
@@ -13,14 +11,8 @@ class App extends Component {
     #lastKey = 4;
     state = {
         todos: data,
-        todoChoos: [{
-            "id": 0,
-            "date": "",
-            "name": "",
-            "city": ""
-        }], //object to edit 
-        search: '',
         //for form changes
+        todoChoos: [],
         todoText: '',
         todoName: '',
         todoCity: '',
@@ -30,8 +22,6 @@ class App extends Component {
 
     addToTodoList = (_date, _name, _city, editId) => {
         //add new item
-        console.log(editId);
-
         if (editId == "") {
             this.setState((state) => {
                 const todos = [...state.todos];
@@ -50,20 +40,6 @@ class App extends Component {
         }
     };
 
-    onSearch = (search) => {
-        this.setState({ search: search.toLowerCase() });
-    };
-
-    componentDidMount() {
-        // if (this.state.todoChoos[1] !== undefined) {
-        //     const our_data = {
-        //         todoText: this.state.todoChoos[1].date,
-        //         todoName: this.state.todoChoos[1].name,
-        //         todoCity: this.state.todoChoos[1].city
-        //     }
-        //     this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
-        // }
-    };
 
     deleteTodoItem = (deleteId) => {
         this.setState(state => {
@@ -86,7 +62,7 @@ class App extends Component {
         this.setState((state) => { state.todoText = myChos[0].date });
         this.setState((state) => { state.todoName = myChos[0].name });
         this.setState((state) => { state.todoCity = myChos[0].city });
-        this.setState((state) => { state.todoId = editId;});
+        this.setState((state) => { state.todoId = editId; });
     };
 
     onChangeInputTodoList = ({ target: { value } }) => {
@@ -101,7 +77,6 @@ class App extends Component {
         this.setState({ todoCity: value });
     };
 
-
     onSubmitForm = (e) => {
         e.preventDefault();
         const our_data = {
@@ -110,33 +85,18 @@ class App extends Component {
             todoCity: this.state.todoCity,
             todoId: this.state.todoId
         }
-
-        console.log(our_data);
-        this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity,our_data.todoId);
+        this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity, our_data.todoId);
+        //clear form valus and state
         this.setState({ todoText: '', todoName: '', todoCity: '', todoId: '' });
-
-        // else {
-        //     const our_data = {
-        //         todoText: this.state.todoChoos[1].date,
-        //         todoName: this.state.todoChoos[1].name,
-        //         todoCity: this.state.todoChoos[1].city
-        //     }
-        //     this.setState({ todoText: our_data.todoText, todoName: our_data.todoName, todoCity: our_data.todoCity });
-        //     this.addToTodoList(our_data.todoText, our_data.todoName, our_data.todoCity,this.state.todoChoos[1].id);
-        // }
     }
 
     render() {
-        const { todos, search, todoChoos } = this.state;
-        console.log(todoChoos);
-
-        //const todolist = todos.filter(todo => todo.name.toString().toLowerCase().includes(search));
+        const { todos } = this.state;
         return (
             <div className="container-fluid">
                 <main className="container">
                     <div className="todo row col-10">
                         <div className="col-6 todoList" id="scroll">
-                            {/* <TodoSearch onSearch={this.onSearch} /> */}
                             <Todolist todoList={todos} deleteTodoItem={this.deleteTodoItem} editTodoItem={this.editTodoItem} />
                         </div>
                         <div className="col-4 todoForm">
@@ -156,10 +116,6 @@ class App extends Component {
                                 </div>
                                 <button className="btn btn-primary mb-3" type="submit" style={{ backgroundColor: "#ff25b6", borderColor: "#ff25b6" }}>Save</button>
                             </form>
-
-
-                            {/* <TodoForm onAddItem={this.addToTodoList} todo={this.state.todoChoos}/>  */}
-                            {/* date={todoChoos[0].data} name={todoChoos[0].name} city={todoChoos[0].city} */}
                         </div>
                     </div>
                 </main>
