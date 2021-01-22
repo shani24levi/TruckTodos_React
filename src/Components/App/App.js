@@ -32,7 +32,7 @@ class App extends Component {
         //add new item
         console.log(editId);
 
-        if (editId == undefined) {
+        if (editId == "") {
             this.setState((state) => {
                 const todos = [...state.todos];
                 todos.push({ id: this.#lastKey++, date: _date, name: _name, city: _city });
@@ -73,8 +73,6 @@ class App extends Component {
     };
 
     editTodoItem = (editId) => {
-        console.log(`woeks ${editId}`);
-
         //get the item by id 
         const myChos = this.state.todos.filter(({ id }) => id == editId);
         console.log(myChos);
@@ -85,12 +83,10 @@ class App extends Component {
             todoChoos.push({ id: editId, date: myChos[0].date, name: myChos[0].name, city: myChos[0].city });
             return { todoChoos };
         });
-
         this.setState((state) => { state.todoText = myChos[0].date });
         this.setState((state) => { state.todoName = myChos[0].name });
         this.setState((state) => { state.todoCity = myChos[0].city });
-        this.setState((state) => { state.todoId = editId });
-        console.log(this.state.todoId);
+        this.setState((state) => { state.todoId = editId;});
     };
 
     onChangeInputTodoList = ({ target: { value } }) => {
@@ -112,7 +108,7 @@ class App extends Component {
             todoText: this.state.todoText,
             todoName: this.state.todoName,
             todoCity: this.state.todoCity,
-            todoCity: this.state.todoId
+            todoId: this.state.todoId
         }
 
         console.log(our_data);
