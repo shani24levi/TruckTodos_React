@@ -4,7 +4,6 @@ import TodoListItem from "./TodoListItem";
 class Todolist extends Component {
     render() {
         const {todoList, deleteTodoItem,editTodoItem} = this.props;
-        console.log(todoList);
 
         return (
             <ul className="list-group" >
