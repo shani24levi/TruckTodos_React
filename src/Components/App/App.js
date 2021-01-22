@@ -12,7 +12,7 @@ const data = require('../../data/data.json');
 class App extends Component {
     #lastKey = 3;
     state = {
-        todos: data , //[{ "id": 1, "text": 'first one' }],
+        todos: data ,
         search: '',
     };
 
@@ -43,7 +43,6 @@ class App extends Component {
 
     componentDidMount() {
         console.log("lastKey");
-       // data.map(item =>{this.addToTodoList(item.id, item.text)});
     };
 
     deleteTodoItem = (deleteId) => {
@@ -65,7 +64,7 @@ class App extends Component {
                 <main className="container">
                     <div className="todo row col-10">
                         <div className="col-6 todoList" id="scroll">
-                            <TodoSearch onSearch={this.onSearch} />
+                            {/* <TodoSearch onSearch={this.onSearch} /> */}
                             <Todolist todoList={todos} deleteTodoItem={this.deleteTodoItem} editTodoItem={this.editTodoItem} />
                         </div>
                         <div className="col-4 todoForm">
